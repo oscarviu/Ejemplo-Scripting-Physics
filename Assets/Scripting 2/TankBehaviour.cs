@@ -8,14 +8,16 @@ public class TankBehaviour : MonoBehaviour {
 	public float rotateSpeed = 1f;
 
 	public GameObject mine = null;
-
-	protected Color _originalColor;
+    Renderer render = null;
+    protected Color _originalColor;
 
 
 	void Start()
 	{
 		Transform renderers = transform.Find("TankRenderers");
-		_originalColor = renderers.Find("TankTurret").GetComponent<Renderer>().material.GetColor("_Color");
+        render = renderers.Find("TankTurret").GetComponent<Renderer>();
+
+        _originalColor = render.material.GetColor("_Color");
 	}
 
 	// Update is called once per frame
@@ -24,7 +26,7 @@ public class TankBehaviour : MonoBehaviour {
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
 			transform.Translate(Vector3.forward * Time.deltaTime * TranslateSpeed);
-			transform.Find("TankRenderers").transform.Find("TankTurret").GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+			render.material.SetColor("_Color", Color.red);
 		}
 		else if (Input.GetKey(KeyCode.DownArrow))
 		{

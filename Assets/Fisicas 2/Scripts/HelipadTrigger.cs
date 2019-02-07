@@ -18,6 +18,8 @@ public class HelipadTrigger : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
-		other.GetComponent<Rigidbody>().AddForce(Vector3.up * force);
+        Rigidbody rigid = other.GetComponent<Rigidbody>();
+        if(rigid)
+            rigid.AddForce(Vector3.up * force);
 	}
 }

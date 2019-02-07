@@ -21,16 +21,16 @@ public class TankPhysicsBehaviour : MonoBehaviour
 	{
 		// Movement
 		if (Input.GetKey(KeyCode.UpArrow))
-			GetComponent<Rigidbody>().AddForce(transform.forward * acceleration, ForceMode.Acceleration);
+			GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * acceleration, ForceMode.Acceleration);
 		else if (Input.GetKey(KeyCode.DownArrow))
-			GetComponent<Rigidbody>().AddForce(-transform.forward * acceleration, ForceMode.Acceleration);
+			GetComponent<Rigidbody>().AddRelativeForce(-Vector3.forward * acceleration, ForceMode.Acceleration);
 		
 		
 		// Rotation
 		if (Input.GetKey(KeyCode.LeftArrow))
-			GetComponent<Rigidbody>().AddTorque(-transform.up * turnAcceleration);
+			GetComponent<Rigidbody>().AddTorque(-transform.up * turnAcceleration, ForceMode.Acceleration);
 		else if (Input.GetKey(KeyCode.RightArrow))
-			GetComponent<Rigidbody>().AddTorque(transform.up * turnAcceleration);
+			GetComponent<Rigidbody>().AddTorque(transform.up * turnAcceleration, ForceMode.Acceleration);
 
 
 		// Reset
@@ -38,7 +38,7 @@ public class TankPhysicsBehaviour : MonoBehaviour
 		{
 
 			GetComponent<Rigidbody>().MovePosition(Vector3.up * 5);
-			GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(Vector3.zero));
+			GetComponent<Rigidbody>().MoveRotation(Quaternion.identity);
 			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
