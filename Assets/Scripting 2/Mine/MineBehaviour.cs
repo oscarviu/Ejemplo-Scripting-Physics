@@ -11,10 +11,20 @@ public class MineBehaviour : MonoBehaviour
 	bool disappearing = false;
 	float currentTime = 0;
 
-	// Update is called once per frame
-	void Update ()
+    [SerializeField]
+    protected GameObject tankObject = null;
+
+    void Start()
+    {
+        if (tankObject == null)
+            tankObject = GameObject.Find("Tank");
+
+    }
+
+    // Update is called once per frame
+    void Update ()
 	{
-		if((GameObject.Find("Tank").transform.position - transform.position).magnitude < 2 && activate)
+		if((tankObject.transform.position - transform.position).sqrMagnitude < 4 && activate)   // 2 units
 		{
 			disappearing = true;
 		}
@@ -23,7 +33,7 @@ public class MineBehaviour : MonoBehaviour
 		{
 			if (currentTime > secondsBetweenDisappearing)
 			{
-				gameObject.GetComponent<Renderer>().enabled = !gameObject.GetComponent<Renderer>().enabled;
+				GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
 				currentTime = 0;
 			}
 		}

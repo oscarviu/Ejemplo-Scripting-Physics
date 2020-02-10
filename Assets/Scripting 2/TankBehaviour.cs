@@ -31,10 +31,10 @@ public class TankBehaviour : MonoBehaviour {
 		else if (Input.GetKey(KeyCode.DownArrow))
 		{
 			transform.Translate(-Vector3.forward * Time.deltaTime * TranslateSpeed);
-			transform.Find("TankRenderers").transform.Find("TankTurret").GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+            render.material.SetColor("_Color", Color.blue);
 		}
 		else
-			transform.Find("TankRenderers").transform.Find("TankTurret").GetComponent<Renderer>().material.SetColor("_Color", _originalColor);
+            render.material.SetColor("_Color", _originalColor);
 
 
 		if (Input.GetKey(KeyCode.RightArrow))
